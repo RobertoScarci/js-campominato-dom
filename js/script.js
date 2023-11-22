@@ -1,38 +1,69 @@
 // prendo la variabile riguardante la section principale
-const mainContent = document.querySelector('section')
-const button = document.querySelector('button')
+const mainContentEl = document.querySelector('main section.main-content');
 
-for (let i = 1 ; i <= 100 ; i++){
-    
-    const currentSquare = newSquare();
+const startButtonEl = document.querySelector('button#play-button');
 
-    const squareContent = i;
+const difficultSelector = document.querySelector('select#select-difficult');
 
-    //  aggiungo il contenuto 
-    currentSquare.innerHTML += `<span> ${squareContent} </span>`;
+startButtonEl.addEventListener('click', function(){
+    generateNewGame(mainContentEl, difficultSelector);
+});
 
-    // quando clicco apparira la griglia
-    button.addEventListener('click', function(){
-        mainContent.classList.add('main-content');
-        mainContent.appendChild(currentSquare);
-    });
 
-    currentSquare.addEventListener('click', function(){
-        if(squareContent % 2 === 0){
-            currentSquare.classList.add('bg-blue')
-            console.log('Sei ancora in vita!')
+// ? ------ Functions ------ ?
 
-        } else if (squareContent % 2 === 1) {
-            currentSquare.classList.add('bg-red')
-            console.log('Bomba ESPLOSA!')
-        }
-    })
- 
+function generateNewGame(wrapperElement, levelSelector){
+
+    wrapperElement.innerHTML = '';
+
+    const level = parseInt(levelSelector.value);
+    let cellsNo;
+
+    switch (level){
+        case 0:
+        default:
+            cellsNo = 100;
+            break;
+        case 1:
+            cellsNo = 81;
+            break;
+        case 2:
+            cellsNo = 49;
+            break;
+    }
+
+    let cellsPerRow = Math.sqrt(cellsNo);
+
+    for (let i = 1 ; i <= cellsNo ; i++){
+        const currentSquare = getNewSquare();
+        const squareContent = i;
+
+        currentSquare.innerHTML += `<span> ${squareContent} </span>`;
+
+        const cellSize = `calc(100% / ${cellsPerRow})`;
+        currentSquare.style.width = cellSize;
+        currentSquare.style.height= cellSize;
+
+        
+
+        currentSquare.addEventListener('click', function(){
+            if ( squareContent % 2 === 0){
+                currentSquare.classList.add('bg-blue');
+            } else {
+                currentSquare.classList.add('bg-red');
+            }
+            currentSquare.classList.add('clicked');
+            console.log(squareContent);
+        });
+
+        wrapperElement.appendChild(currentSquare);
+    }
 }
 
 
+
 // ====Function====
-function newSquare(){
+function getNewSquare(){
     const newSquareElement = document.createElement('article');
     newSquareElement.classList.add('item-square');
     return newSquareElement;
