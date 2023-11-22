@@ -109,7 +109,7 @@ section.main-content article.item-square{
 
 .game-over {
     width: 550px;
-    height: 400px;
+    height: 450px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,8 +118,8 @@ section.main-content article.item-square{
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0,0,0,0.8);
-    color: red;
-    font-size: 4rem;
+    color: rgb(211, 0, 0);
+    font-size: 5rem;
     text-transform: uppercase;
 }
 

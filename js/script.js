@@ -15,7 +15,7 @@ startButtonEl.addEventListener('click', function(){
 });
 
 
-// ? ------ Functions ------ ?
+// ------ Functions ------
 
 function generateNewGame(wrapperElement, levelSelector){
 
@@ -59,11 +59,13 @@ function generateNewGame(wrapperElement, levelSelector){
                     currentSquare.classList.add('bg-red')
                     gameEnd.classList.add('game-over');
                     gameEnd.textContent = 'Game Over';
+                    punteggio++;
+                    punteggioFinale.textContent = 'Il punteggio finale è : ' + punteggio
                     gameOver = true;
                 } else {
                     currentSquare.classList.add('bg-blue');
-                    punteggio++
-                    punteggioFinale.textContent = 'Punteggio: ' + punteggio
+                    punteggio++;
+                    punteggioFinale.textContent = 'Punteggio: ' + punteggio;
 
                 }
             }
