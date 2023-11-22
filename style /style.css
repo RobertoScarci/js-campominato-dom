@@ -51,7 +51,7 @@ button{
     height: 40px;
     margin-right: 8rem;
     color: white;
-    background-color: rgb(200, 148, 15);
+    background-color: rgb(167, 42, 4);
     border: none;
     font-size: 18px;
 }
@@ -126,5 +126,9 @@ section.main-content article.item-square{
 /* footer */
 footer{
     padding: 1rem;
+}
+
+.score{
+    margin-right: 9rem;
 }
 

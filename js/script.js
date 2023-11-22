@@ -5,7 +5,10 @@ const startButtonEl = document.querySelector('button#play-button');
 
 const difficultSelector = document.querySelector('select#select-difficult');
 
-const gameStats = document.querySelector('div.game-stats')
+const gameEnd = document.querySelector('div.game-end')
+
+const punteggioFinale = document.querySelector('div.score')
+
 
 startButtonEl.addEventListener('click', function(){
     generateNewGame(mainContentEl, difficultSelector);
@@ -48,16 +51,20 @@ function generateNewGame(wrapperElement, levelSelector){
         currentSquare.style.height= cellSize;
 
         let gameOver = false;
+        let punteggio = 0;
 
         currentSquare.addEventListener('click', function() {
             if(!gameOver) {
                 if(bombList.includes(parseInt(this.textContent))) {
                     currentSquare.classList.add('bg-red')
-                    gameStats.classList.add('game-over');
-                    gameStats.textContent = 'Game Over';
+                    gameEnd.classList.add('game-over');
+                    gameEnd.textContent = 'Game Over';
                     gameOver = true;
                 } else {
-                    this.classList.add('bg-blue');
+                    currentSquare.classList.add('bg-blue');
+                    punteggio++
+                    punteggioFinale.textContent = 'Punteggio: ' + punteggio
+
                 }
             }
         });
