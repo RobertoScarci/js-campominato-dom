@@ -5,6 +5,8 @@ const startButtonEl = document.querySelector('button#play-button');
 
 const difficultSelector = document.querySelector('select#select-difficult');
 
+const gameStats = document.querySelector('div.game-stats')
+
 startButtonEl.addEventListener('click', function(){
     generateNewGame(mainContentEl, difficultSelector);
 });
@@ -37,6 +39,7 @@ function generateNewGame(wrapperElement, levelSelector){
     for (let i = 1 ; i <= cellsNo ; i++){
         const currentSquare = getNewSquare();
         const squareContent = i;
+        const bombList = generateBomb(cellsNo);
 
         currentSquare.innerHTML += `<span> ${squareContent} </span>`;
 
@@ -44,22 +47,48 @@ function generateNewGame(wrapperElement, levelSelector){
         currentSquare.style.width = cellSize;
         currentSquare.style.height= cellSize;
 
-        
+        let gameOver = false;
 
-        currentSquare.addEventListener('click', function(){
-            if ( squareContent % 2 === 0){
-                currentSquare.classList.add('bg-blue');
-            } else {
-                currentSquare.classList.add('bg-red');
+        currentSquare.addEventListener('click', function() {
+            if(!gameOver) {
+                if(bombList.includes(parseInt(this.textContent))) {
+                    currentSquare.classList.add('bg-red')
+                    gameStats.classList.add('game-over');
+                    gameStats.textContent = 'Game Over';
+                    gameOver = true;
+                } else {
+                    this.classList.add('bg-blue');
+                }
             }
-            currentSquare.classList.add('clicked');
-            console.log(squareContent);
         });
+
 
         wrapperElement.appendChild(currentSquare);
     }
 }
 
+function generateUniqueRandomNumber(numberList, min, max) {
+    if(numberList.length > max - min + 1) {
+        console.log('Numeri massimi raggiunti');
+        return ;
+    }
+
+    let generatedNumber;
+
+    do {
+        generatedNumber = Math.floor((Math.random() * (max - min)) + min);
+    } while(numberList.includes(generatedNumber)); 
+
+    return generatedNumber;
+}
+
+function generateBomb(bombNumber) {
+    const bomb = [];
+    for(let i = 0; i < 16; i++) {
+        bomb[i] = generateUniqueRandomNumber(bomb, 1, bombNumber);
+    }
+    return bomb;
+}
 
 
 // ====Function====

@@ -47,11 +47,11 @@ div.wrapper {
 }
 
 button{
-    width: 110px;
-    height: 35px;
+    width: 120px;
+    height: 40px;
     margin-right: 8rem;
     color: white;
-    background-color: rgb(151, 32, 32);
+    background-color: rgb(200, 148, 15);
     border: none;
     font-size: 18px;
 }
@@ -62,8 +62,9 @@ button{
     margin-right: .8rem;
     margin-left: .5rem;
     color: white;
-    background-color: rgb(176, 171, 171);
+    background-color: rgb(189, 181, 181);
     font-size: 15px;
+    border-radius: 6px;
 }
 
 
@@ -106,6 +107,23 @@ section.main-content article.item-square{
 }
 
 
+.game-over {
+    width: 550px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,0.8);
+    color: red;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+/* footer */
 footer{
     padding: 1rem;
 }
